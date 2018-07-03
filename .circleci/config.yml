@@ -23,7 +23,7 @@ jobs:
     <<: *job_common
     steps:
       - checkout
-      - run: 'sudo yarn global add greenkeeper-lockfile@2'
+      - run: 'sudo yarn global add patkub/greenkeeper-lockfile#fix-lockfile-wording'
       - run:
           name: 'last commit on branch'
           command: 'git log --format=%B -1'
@@ -38,7 +38,7 @@ jobs:
     <<: *job_common
     steps:
       - <<: *restore
-      - run: 'sudo yarn global add greenkeeper-lockfile@2'
+      - run: 'sudo yarn global add patkub/greenkeeper-lockfile#fix-lockfile-wording'
       - run:
           name: 'last commit on branch'
           command: 'git log --format=%B -1'
