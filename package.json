@@ -4,6 +4,7 @@
   "description": "Personally test greenkeeper lockfile",
   "main": "index.js",
   "dependencies": {
+    "greenkeeper-lockfile": "2.3.0",
     "patkub-test-greenkeeper-lockfile-package": "1.0.0"
   },
   "devDependencies": {},
