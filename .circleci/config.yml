@@ -27,9 +27,6 @@ jobs:
       - run:
           name: 'last commit on branch'
           command: 'git log --format=%B -1'
-      - run:
-          name: 'git status porcelain'
-          command: 'git status --porcelain'
       - run: 'greenkeeper-lockfile-update'
       - run: 'echo job1 installed greenkeeper-lockfile and ran greenkeeper-lockfile-update'
       - <<: *save
