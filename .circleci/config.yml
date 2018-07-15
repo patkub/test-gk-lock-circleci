@@ -12,7 +12,9 @@ save: &save
     key: code-{{ .Revision }}
     paths:
       - .
+      # save the git commit and ssh config
       - ".git"
+      - ".ssh"
         
 restore: &restore
   restore_cache:
@@ -23,7 +25,7 @@ jobs:
     <<: *job_common
     steps:
       - checkout
-      - run: 'sudo yarn global add patkub/greenkeeper-lockfile#fix-lockfile-wording'
+      - run: 'sudo yarn global add greenkeeper-lockfile@2'
       - run:
           name: 'last commit on branch'
           command: 'git log --format=%B -1'
@@ -38,13 +40,14 @@ jobs:
     <<: *job_common
     steps:
       - <<: *restore
-      - run: 'sudo yarn global add patkub/greenkeeper-lockfile#fix-lockfile-wording'
+      - run: 'sudo yarn global add greenkeeper-lockfile@2'
       - run:
           name: 'last commit on branch'
           command: 'git log --format=%B -1'
-      - run:
-          name: SSH Avoid hosts unknown
-          command: 'mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config'
+      # optionally ignore ssh hosts unknown error if you don't want to save ~/.ssh between jobs
+      # - run:
+          # name: SSH Avoid hosts unknown
+          # command: 'mkdir -p ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config'
       - run: 'greenkeeper-lockfile-upload'
       - run: 'echo job3 ran greenkeeper-lockfile-upload'
 workflows:
