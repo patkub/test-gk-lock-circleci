@@ -14,7 +14,7 @@ save: &save
       - .
       # save the git commit and ssh config
       - ".git"
-      - ".ssh"
+      - "~/.ssh"
         
 restore: &restore
   restore_cache:
